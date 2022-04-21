@@ -1,6 +1,7 @@
 import { ADD_TODO } from "../Actions/types";
 import { DELETE_TODO } from "../Actions/types";
 import { EDITE_TODO} from "../Actions/types";
+import {RESET_TODO} from "../Actions/types";
 const initialState={
     data: [],
 }
@@ -27,6 +28,14 @@ const todoReducer=(state=initialState,action)=>{
                   ...action.payload.array
                  ]
              }
+
+             case RESET_TODO:
+                console.log('reducer is happening',action);
+             return {
+               data: [
+                   ...action.payload.array
+                  ]
+              }
           
   
         default:

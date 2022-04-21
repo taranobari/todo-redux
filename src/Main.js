@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import addTodo from "./Redux/Actions/addAction";
 import deleteTodo from "./Redux/Actions/deleteAction";
-import editeTodo from "./Redux/Actions/edite";
+import editeTodo from "./Redux/Actions/editeAction";
+import resetTodo from "./Redux/Actions/resetAction";
 
 
 const Main=()=>{
@@ -21,12 +22,17 @@ const dispatch=useDispatch()
         console.log('s',s);
     }   
 
+    const reset=()=>{
+        dispatch(resetTodo(value))
+        console.log('reset',s);
+    }   
+
    
     return(
         <div>
             <input type='text' value={value} onChange={(e)=>{setValue(e.target.value)}}/>
             <button className='btn' onClick={()=>handleClick()} >add todo</button>
-            
+            <button className='btn' onClick={()=>reset()} >reset</button>
             <Card names={s.todo.data} />
         </div>
     )
@@ -39,13 +45,11 @@ const Card=({names,value})=>{
 
     const deleteItem=(i)=>{
         dispatch(deleteTodo(i,names))
-        // setNames([...names,value])
         console.log('sDelet',s);
     }   
     const editItem=(i)=>{
         console.log('editeItem is happening');
         dispatch(editeTodo(i,names))
-        // setNames([...names,value])
     }   
 
     
